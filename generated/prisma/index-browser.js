@@ -126,6 +126,17 @@ exports.Prisma.UserScalarFieldEnum = {
   updateTime: 'updateTime'
 };
 
+exports.Prisma.ExamScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  isPublish: 'isPublish',
+  isDelete: 'isDelete',
+  content: 'content',
+  createTime: 'createTime',
+  updateTime: 'updateTime',
+  createUserId: 'createUserId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -137,9 +148,15 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   email: 'email'
 };
 
+exports.Prisma.ExamOrderByRelevanceFieldEnum = {
+  name: 'name',
+  content: 'content'
+};
+
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Exam: 'Exam'
 };
 
 /**

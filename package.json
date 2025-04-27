@@ -22,6 +22,7 @@
   "dependencies": {
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
+    "@nestjs/jwt": "^11.0.0",
     "@nestjs/microservices": "^11.0.21",
     "@nestjs/platform-express": "^11.0.1",
     "@prisma/client": "6.6.0",
@@ -83,6 +84,7 @@
     "moduleNameMapper": {
       "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1",
       "^@app/redis(|/.*)$": "<rootDir>/libs/redis/src/$1",
+      "^y/common(|/.*)$": "<rootDir>/libs/common/src/$1",
       "^y/email(|/.*)$": "<rootDir>/libs/email/src/$1"
     }
   }

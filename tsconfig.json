@@ -18,6 +18,12 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
+      "@app/email": [
+        "libs/email/src"
+      ],
+      "@app/email/*": [
+        "libs/email/src/*"
+      ],
       "@app/prisma": [
         "libs/prisma/src"
       ],
@@ -30,11 +36,11 @@
       "@app/redis/*": [
         "libs/redis/src/*"
       ],
-      "@app/email": [
-        "libs/email/src"
+      "@app/common": [
+        "libs/common/src"
       ],
-      "@app/email/*": [
-        "libs/email/src/*"
+      "@app/common/*": [
+        "libs/common/src/*"
       ]
     }
   }

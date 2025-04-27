@@ -1,8 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Inject, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Inject, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { RegisterUserDto } from './dto/register-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 import { EmailService } from '@app/email';
 import { RedisService } from '@app/redis';
+import { JwtService } from '@nestjs/jwt';
+import { RequireLogin, UserInfo } from '@app/common';
 
 @Controller('user')
 export class UserController {
@@ -13,6 +16,9 @@ export class UserController {
 
   @Inject(RedisService)
   private redisService: RedisService;
+
+  @Inject(JwtService)
+  private jwtService: JwtService;
 
   @Get('register-captcha')
   async captcha(@Query('address') address: string) {
@@ -32,4 +38,33 @@ export class UserController {
   async register(@Body() registerUser: RegisterUserDto) {
     return await this.userService.register(registerUser);
   }
+
+  @Post('login')
+  async userLogin(@Body() loginUser: LoginUserDto) {
+    const user = await this.userService.login(loginUser);
+
+    return {
+      user,
+      token: this.jwtService.sign({
+        userId: user.id,
+        username: user.username
+      }, {
+        expiresIn: '7d'
+      })
+    };
+  }
+
+  @Get('aaa')
+  @RequireLogin()
+  // @SetMetadata('require-login', true)
+  aaa(@UserInfo() userInfo, @UserInfo('username') username) {
+    console.log(userInfo, username);
+    return 'aaa';
+  }
+
+  @Get('bbb')
+  bbb() {
+    return 'bbb';
+  }
+
 }
